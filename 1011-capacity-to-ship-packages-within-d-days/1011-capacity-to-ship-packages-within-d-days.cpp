@@ -15,7 +15,13 @@ public:
     }
     
     int shipWithinDays(vector<int>& weights, int days) {
-        int low=0 , high = INT_MAX;
+        
+        int low=INT_MIN , high = 0;
+        for(int i=0;i<weights.size();i++)
+        {
+            low=max(low,weights[i]);
+            high+=weights[i];
+        }
         int cap=INT_MAX;
         while(low<=high)
         {
