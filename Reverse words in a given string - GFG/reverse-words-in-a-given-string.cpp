@@ -9,16 +9,22 @@ class Solution
 {
     public:
     //Function to reverse words in a given string.
+    void reverse(string &s,int l,int h){
+        while(l<h)swap(s[l++],s[h--]);
+    }
     string reverseWords(string s) 
     { 
+        // code here 
+        // ijdli.like.this.program.very.much
         s+=".";
-        for(int i=0;i<s.length();){
-            int j=i;
-            while(s[j]!='.')j++;
-            reverse(s.begin()+i,s.begin()+j);
-            i=j+1;
+        for(int start=0;start<s.size(); ){
+            int end=start;
+            while(s[end]!='.')end++;
+            reverse(s,start,end-1);
+            start=end+1;
         }
-        reverse(s.begin(),s.end());
+        reverse(s,0,s.size()-1);
+        
         return s.substr(1,s.size()-1);
     } 
 };
