@@ -20,12 +20,12 @@ class Solution
         for(int i=0;i<a.size();i++){
             count[a[i] - 'a']++;
         }
-        int count2[26]={0};
+        
         for(int i=0;i<b.size();i++){
-            count2[b[i] - 'a']++;
+            count[b[i] - 'a']--;
         }
         for(int i=0;i<26;i++){
-            if(count[i]!=count2[i])return false;
+            if(count[i]!=0)return false;
         }
         return true;
     }
