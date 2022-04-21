@@ -8,6 +8,8 @@ using namespace std;
  // } Driver Code Ends
 //User function Template for C++
 
+
+
 class Solution
 {
 	public:
@@ -16,13 +18,20 @@ class Solution
 		    // Code here.
 		    
 		    string num = to_string(no);
-		    string temp="";
+		  //  string temp="";
 		    int n=num.size();
-		    for(int i=n-1;i>=0;i--){
-		        temp.push_back(num[i]);
-		    }
-		    if(temp==num)return "Yes";
-		    else return "No";
+		  //  for(int i=n-1;i>=0;i--){
+		  //      temp.push_back(num[i]);
+		  //  }
+		  //  if(temp==num)return "Yes";
+		  //  else return "No";
+		  int l=0, h=n-1;
+		  while(l<h){
+		      if(num[l]!=num[h])return "No";
+		      l++;
+		      h--;
+		  }
+		  return "Yes";
 		}
 };
 
