@@ -19,13 +19,27 @@ class Solution {
     
     bool isCyclic(int V, vector<int> adj[]) {
         // code here
-        vector<int>visited(V,0) ;
+        vector<int>indegree(V,0);
         for(int i=0;i<V;i++){
-            if(!visited[i]){
-                if(dfs(i,V,adj,visited))return 1;
+            for(auto x:adj[i]){
+                indegree[x]++;
             }
         }
-        return false;
+        int count=0;
+        queue<int>q;
+        for(int i=0;i<V;i++){
+            if(indegree[i]==0)q.push(i);
+        }
+        while(!q.empty()){
+            auto curr = q.front();
+            q.pop();
+            for(auto child:adj[curr]){
+                indegree[child]--;
+                if(indegree[child]==0)q.push(child);
+            }
+            count++;
+        }
+        return count<V ;
     }
 };
 
