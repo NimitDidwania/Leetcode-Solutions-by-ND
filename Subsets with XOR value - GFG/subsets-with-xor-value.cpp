@@ -8,18 +8,23 @@ using namespace std;
 class Solution{
 public:
     void fun(int ind,vector<int>&arr,int n,int k,int x,int &ct){
-        if(ind==n){
-            if(k==x)ct++;
+        if(ind == n){
+            if(x == k)ct++;
             return;
         }
-        fun(ind+1,arr,n,k,x^arr[ind],ct);
+        
+        //choice 1
+        x=x^arr[ind];
+        fun(ind+1,arr,n,k,x,ct);
+        x=x^arr[ind];//backtracking
+        //choice 2
         fun(ind+1,arr,n,k,x,ct);
     }
 
+
     int subsetXOR(vector<int> arr, int N, int K) {
         // code here
-        int x = 0;
-        int ct=0;
+        int x = 0 , ct=0;
         fun(0,arr,N,K,x,ct);
         return ct;
     }
