@@ -6,27 +6,31 @@ using namespace std;
 class Solution
 {
 	public:
-	    void fun(string s,string curr, vector<string>&ans){
-	        if(curr.size()==s.size()){
-	            ans.push_back(curr);
-	            return ;
-	        }
-	        for(int i=0;i<s.size();i++){
-	            if(s[i]!=' '){
-	                char restore=s[i];
-	                s[i]=' ';
-	                fun(s,curr+restore,ans);
-	                s[i]=restore;
-	            }
-	        }
-	    }
-		vector<string>find_permutation(string s)
+	   void fun(int ind,string &s,string &curr ,vector<string>&ans)
+        {
+            if(ind==s.size()){
+                ans.push_back(curr);
+                return;
+            }
+            
+            for(int i=0;i<s.size();i++){
+                if(s[i]!=' '){
+                    char restore = s[i];
+                    curr.push_back(s[i]);
+                    s[i]=' ';
+                    fun(ind+1,s,curr,ans);
+                    curr.pop_back();
+                    s[i]=restore;
+                }
+            }
+        }	
+		vector<string>find_permutation(string S)
 		{
 		    // Code here there
+		    sort(S.begin(),S.end());
 		    vector<string>ans;
 		    string curr="";
-		    fun(s,curr,ans);
-		    sort(ans.begin(),ans.end());
+		    fun(0,S,curr,ans);
 		    return ans;
 		}
 };
