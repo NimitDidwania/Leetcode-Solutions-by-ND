@@ -9,13 +9,12 @@ public:
         queue<TreeNode*>q;
         q.push(root);
         q.push(NULL);
-        while(!q.empty()){
+        while(q.size()>1){
             auto curr = q.front();
             q.pop();
             if(curr==NULL){
                            q.push(NULL);
                            ans.push_back(level);
-                            if(q.size()==1)break;
                            level.clear();
                            
                            continue;}
@@ -23,6 +22,7 @@ public:
             if(curr->left!=NULL)q.push(curr->left);
             if(curr->right!=NULL)q.push(curr->right);
         }
+        ans.push_back(level);
         return ans;
     }
 };
