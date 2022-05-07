@@ -9,12 +9,12 @@ class Solution
 {
     public:
     //Function to find a Mother Vertex in the Graph.
-    void dfs(int s,int V,vector<int> adj[],bool visited[],stack<int>&st){
+    void dfs(int s,int V,vector<int> adj[],bool visited[],int &st){
         visited[s]=1;
         for(auto child:adj[s]){
             if(!visited[child])dfs(child,V,adj,visited,st);
         }
-        st.push(s);
+        st=s;
     }
     void dfs2(int s,int V,vector<int> adj[],bool visited[],int &count){
         visited[s]=1;
@@ -28,7 +28,7 @@ class Solution
 	{
 	    // Code here
 	    int entry=0;
-	    bool visited[V]={false};stack<int>st;
+	    bool visited[V]={false};int st;
 	    for(int i=0;i<V;i++){
 	       // if(entry==1)return -1;
 	        if(!visited[i])
@@ -37,9 +37,9 @@ class Solution
 	    }
 	    for(int i=0;i<V;i++)visited[i]=false;
 	    int count=0;
-	    dfs2(st.top(),V,adj,visited,count);
+	    dfs2(st,V,adj,visited,count);
 	    if(count==V)
-	    return st.top();
+	    return st;
 	    else return -1;
 	}
 
