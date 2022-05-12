@@ -26,7 +26,6 @@ public:
                 label=parentMin + leftParent;
             }
             ans.push_back(label);
-            if(level ==x )cout<<srNo<<endl;
             level--;
         }
         reverse(ans.begin(),ans.end());
