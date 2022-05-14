@@ -22,7 +22,6 @@ public:
         for(auto x:mp){
             pq.push({x.second,x.first});
         }
-        cout<<pq.top().first<<" "<<pq.top().second;
         vector<string>ans;
         int i=0;
         while(!pq.empty() && i!=k){
