@@ -1,20 +1,28 @@
 class Solution {
 public:
-    
-    
-     int longestValidParentheses(string s) {
-         stack<int>st;
-         int ans=0;
-         st.push(-1);
-         int n=s.size();
-         for(int i=0;i<n;i++){
-             if(s[i]=='(')st.push(i);
-             else{
-                 st.pop();
-                 if(st.empty())st.push(i);
-                 ans = max (ans ,i - st.top());
-             }
-         }
-         return ans;
+    int longestValidParentheses(string s) {
+        int open = 0 , close = 0 , ans =0 ;
+        for(int i=0;i<s.size();i++){
+            if(s[i] == '(')open++;
+            else close++;
+            if(open==close){
+                ans = max(ans,open+close);
+            }
+            else if(open<close){
+                open = close = 0;
+            }
+        }
+        open=0,close =0;
+        for(int i=s.size()-1;i>=0;i--){
+            if(s[i] == '(')open++;
+            else close++;
+            if(open==close){
+                ans = max(ans,open+close);
+            }
+            else if(open>close){
+                open = close = 0;
+            }
+        }
+        return ans;
     }
 };
